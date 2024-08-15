@@ -1,675 +1,831 @@
-//Thu Aug 15 2024 12:21:50 GMT+0000 (Coordinated Universal Time)
+//Thu Aug 15 2024 12:24:30 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
-//Wed Jul 03 2024 02:49:20 GMT+0000 (Coordinated Universal Time)
-//Base:https://github.com/echo094/decode-js
-//Modify:https://github.com/smallfawn/decode_action
+/**
+ * 变量：elmck: 必填，账号cookie
+ * cron 1 0,6,12,18,21 * * *
+ * 需要手动玩到四级才能跑
+ */
+
+const $ = new Env("\u997F\u4E86\u4E48\u68A6\u5E7B\u5C0F\u9662");
 const {
-    sign,
-    getToken,
-    checkCk,
-    getCookies,
-    getUserInfo,
-    validateCarmeWithType,
-    checkCarmeCount,
-    tryCatchPromise
-  } = require("./common.js"),
-  request = require("request"),
-  {
-    wait
-  } = require("./common"),
-  GAME_TYEP = 6,
-  kami = process.env.ELE_CARME;
-function isEmpty(_0x382618) {
-  return Object.values(_0x382618).length === 0;
+  "getToken": getToken,
+  "tryCatchPromise": tryCatchPromise,
+  "getCookies": getCookies,
+  "checkCk": checkCk,
+  "getUserInfo": getUserInfo,
+  "wait": wait
+} = require("./common.js");
+const _0xd960c1 = require("request");
+const md5 = require("md5");
+let _0x244760 = 1;
+let _0x22b780;
+async function _0x1d5d09(_0x37366f) {
+  const _0x309187 = {
+    "bizScene": "ELEME_ELMYLY",
+    "instance": "INNER"
+  };
+  let _0x495e7d = await _0x768dee("mtop.alsc.playgame.common.real.name.authentication", _0x37366f, _0x309187);
+  return _0x495e7d["authentication"];
 }
-async function lottery(_0x441cb5) {
-  const _0x25e489 = {
-      "authority": "shopping.ele.me",
-      "accept": "application/json",
-      "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-      "cache-control": "no-cache",
-      "content-type": "application/x-www-form-urlencoded",
-      "origin": "https://r.ele.me",
-      "pragma": "no-cache",
-      "referer": "https://r.ele.me/linkgame/index.html?navType=3&spm-pre=a2ogi.13162730.zebra-ele-login-module-9089118186&spm=a13.b_activity_kb_m71293.0.0",
-      "cookie": _0x441cb5,
-      "x-ele-ua": "RenderWay/H5 AppName/wap Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36",
-      "user-agent": "Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36"
-    },
-    _0x1cf85f = {
-      "actId": "20221207144029906162546384",
-      "collectionId": "20230224114656384938530468",
-      "componentId": "20230224114825216373367998",
-      "bizScene": "game_center",
-      "bizCode": "LOTTERY",
-      "longitude": "120.21993197500706",
-      "latitude": "30.178378857672215",
-      "asac": "2A232091VOX6SPEQYH6RG4",
-      "extParams": "{\"bizType\":\"LOTTERY\"}",
-      "ua": "140#CK1oj11hzzW9Szo2K52s+pN8s77HHUFmuM/UtDDs0Qi3WsJVBjgCRSpLBmwg1t45dolchfqRmKl1bALrrsgqlbzxhMT65/VGzzcSb1NVl3MzzPzbVXlqlYfWGwrfAdGuzF4SLIuKlpODzPzYVXEul+Fx3DH3uJBlzFzb2mD5lp1bojnSONdOHaU+WFtTI267wOPmhF8Lb1t1AGAMJzaUhlSZ37eoVlUxdJDMRuBaLMfDybLO0h1eFD9Bu8b+DVPhp0zq91yfNSAXB7K0jltKROauR0mY6uMsohEuI04aSewXLPQudoCKe4KTqOdcfQxcM7naN0frsSX8GkmfK7MJZvMjY1U5qUZ8S6B6etbmdFpXI71kiclSbDtLx68pvrlX+Fc4UR+S3Pe1djdcWkhUqAOMMF1UoPppTe48HVaz+8QLqCm5C+vFVcG/nR4fp/Nqr9zxZZ1BEF2cqauKj9rwh1wg0ciKSZHr7d7+iqSugixQcmeWHucfFqAnDSqbHS8s0IlgXzfyfX4mbjfwsHaceDK5eauu/HlurzK0IpFhTLNn95u4XaF2p+Vx7/iLXMyEDky/HPCNi8XALSXJrmIz7wz6xcq2coakOoMyCQhrEhtsCgKAdzI0tjMldN3kNPusrd2JYaqKN6tK0a3ntrBfPvKjkXqX7p9CYI7DIp40BjnHwQCDKd3fZl6Fu4aOYZlfXnVkuSnuL0gkYtscTU4hIBmZsaKOKXSJdWYdynhh29HJVvpLAptEkD8Lnvm9nXnk7GorF+NPoY/dpJ+S2eh8/XksaIyRH3zWcpW5Ua30Hn94YEcqMFI/gQVjPHTdGkzBbjU8oTiLJ5Y5qSIY5eDM6T7XYoSwhGbyAL+=",
-      "umidtoken": "T2gA__C3-r3sSTF7ZzBUS-C0RcKNSn8q17hKFBPM5pcplOQGdIK15W9ScohgOWU8PE0="
-    },
-    _0x41dbe8 = new Date().getTime(),
-    _0x190eeb = 12574478;
-  var _0x43aab7 = "data=" + encodeURIComponent(JSON.stringify(_0x1cf85f));
-  const _0x4e1126 = getToken(_0x441cb5),
-    _0x396029 = _0x4e1126.split("_")[0],
-    _0x325758 = await sign(_0x396029 + "&" + _0x41dbe8 + "&" + _0x190eeb + "&" + JSON.stringify(_0x1cf85f), kami),
-    _0x5adac6 = {
-      "url": "http://59.82.34.174/gw/mtop.koubei.interactioncenter.platform.right.lottery/1.0/?jsv=2.6.1&appKey=12574478&t=" + _0x41dbe8 + "&sign=" + _0x325758 + "&api=mtop.koubei.interactioncenter.platform.right.lottery&v=1.0&type=originaljson&dataType=json",
-      "method": "POST",
-      "headers": _0x25e489,
-      "body": _0x43aab7
-    };
-  return tryCatchPromise(_0x5d4a35 => {
-    request(_0x5adac6, async (_0x253d91, _0x3b3869, _0x4b2646) => {
-      if (!_0x253d91 && _0x3b3869.statusCode === 200) {
-        try {
-          const _0x8a8fd5 = JSON.parse(_0x4b2646);
-          if (isEmpty(_0x8a8fd5.data.data)) console.log(_0x8a8fd5.ret[0]), _0x5d4a35(false);else {
-            if (_0x8a8fd5.data.data.errorMsg) console.log(_0x8a8fd5.data.data.errorMsg);else {
-              let _0x373ece = _0x8a8fd5.data.data.sendRightList[0];
-              const _0x559bcb = _0x373ece.materialInfo.description + _0x373ece.materialInfo.title;
-              console.log(_0x559bcb);
-            }
-            _0x5d4a35(_0x8a8fd5);
-          }
-        } catch (_0x8f1071) {
-          _0x5d4a35(false);
-        }
-      } else _0x5d4a35(false);
-    });
-  });
-}
-async function lyb_sign(_0x305fd4) {
-  const _0x2fce18 = await checkCk(_0x305fd4),
-    _0x5bce9d = {
-      "authority": "mtop.ele.me",
-      "accept": "application/json",
-      "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-      "asac": "2A21607NIIT1ND5C4YXJ6C",
-      "cache-control": "no-cache",
-      "content-type": "application/x-www-form-urlencoded",
-      "origin": "https://tb.ele.me",
-      "pragma": "no-cache",
-      "referer": "https://tb.ele.me/wow/alsc/mod/b9ee9e6451bc8eda7a6afcbb?spm=a2ogi.13162730.zebra-ele-login-module-9089118186&spm=a2ogi.13162730.zebra-ele-login-module-9089118186&spm-pre=a13.b_activity_kb_m71293.ebridge.login",
-      "cookie": _0x2fce18,
-      "user-agent": "Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36"
-    },
-    _0x15538e = new Date().getTime(),
-    _0x22b3f9 = 12574478,
-    _0x1e25c6 = {
-      "bizScene": "game_center",
-      "asac": "2A21607NIIT1ND5C4YXJ6C",
-      "umidtoken": "defaultToken2_load_failed with timeout@@https://tb.ele.me/wow/alsc/mod/b9ee9e6451bc8eda7a6afcbb@@" + _0x15538e
-    };
-  var _0x46a7a9 = "data=" + encodeURIComponent(JSON.stringify(_0x1e25c6));
-  const _0xe8ad83 = getToken(_0x2fce18),
-    _0x40ec19 = _0xe8ad83.split("_")[0],
-    _0x4cd30d = await sign(_0x40ec19 + "&" + _0x15538e + "&" + _0x22b3f9 + "&" + JSON.stringify(_0x1e25c6), kami),
-    _0x2dc385 = {
-      "url": "http://59.82.34.174/gw/mtop.koubei.interactioncenter.sign.component.recordsignin/1.0/5.0/?jsv=2.7.1&appKey=" + _0x22b3f9 + "&t=" + _0x15538e + "&sign=" + _0x4cd30d + "&api=mtop.koubei.interactioncenter.sign.component.recordsignin&v=1.0&ecode=1&type=json&valueType=string&needLogin=true&LoginRequest=true&dataType=jsonp&SV=5.0&asac=2A21607NIIT1ND5C4YXJ6C&secttid=h5%40android_chrome_87.0.4280.141",
-      "method": "POST",
-      "headers": _0x5bce9d,
-      "body": _0x46a7a9
-    };
-  return tryCatchPromise(_0x45bc29 => {
-    request(_0x2dc385, async (_0x57cc5e, _0x1bd0c9, _0x3271dd) => {
-      if (!_0x57cc5e && _0x1bd0c9.statusCode == 200) {
-        const _0x423af2 = JSON.parse(_0x3271dd);
-        _0x423af2.data.errorMsg ? console.log(_0x423af2.data.errorMsg) : console.log("\u7B7E\u5230\u6210\u529F");
-        _0x45bc29(_0x423af2);
-      } else _0x45bc29(null);
-    });
-  });
-}
-async function lyb_llk_token(_0x2ef95e) {
-  const _0x4de1d6 = {
-      "bizScene": "LIANLIANKAN",
-      "bizMethod": "login",
-      "bizParam": "{\"inviterId\":null,\"gameId\":null,\"token\":\"token\"}",
-      "longitude": 114.174328,
-      "latitude": 22.316555
-    },
-    _0x4069f9 = await gameRequest(_0x2ef95e, _0x4de1d6);
-  return _0x4069f9.data.token;
-}
-async function lyb_llk_gamecode(_0x573d6d, _0x79d754) {
-  const _0x21aca0 = {
-      "bizScene": "LIANLIANKAN",
-      "bizMethod": "startGameV2",
-      "bizParam": "{\"gameId\":null,\"token\":\"" + _0x79d754 + "\"}",
-      "longitude": 114.174328,
-      "latitude": 22.316555
-    },
-    _0x45c164 = await gameRequest(_0x573d6d, _0x21aca0);
-  if (_0x45c164.bizErrorMsg != "success") return console.log(_0x45c164.bizErrorMsg), null;
-  return _0x45c164.data.gameCode;
-}
-async function lyb_llk_passgame(_0x446a8d, _0x3b9f30, _0x3cc91c) {
-  const _0x323574 = {
-      "bizScene": "LIANLIANKAN",
-      "bizMethod": "settlement",
-      "bizParam": "{\"gameCode\":\"" + _0x3b9f30 + "\",\"passLevelTime\":40351,\"gameId\":null,\"token\":\"" + _0x3cc91c + "\"}"
-    },
-    _0x55a1fb = await gameRequest(_0x446a8d, _0x323574);
-  if (_0x55a1fb.bizErrorMsg != "success") {
-    return console.log(_0x55a1fb.bizErrorMsg), null;
+async function _0x2eb09b(_0x4dbdaf) {
+  const _0x1851a7 = new Date()["getTime"]();
+  const _0x34e39f = {
+    "body": "{\"nickname\":\"\u666E\u901A\u73A9\u5BB6\",\"avatar\":\"998d3ad143b581e8f2a3866c1f8a783cjpeg\",\"inviterId\":\"\",\"inviterType\":0,\"shareTime\":0,\"debug\":null,\"reqIdx\":" + _0x244760 + ",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
+    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
+    "instance": "INNER",
+    "method": "POST",
+    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
+    "path": "/api/role/login",
+    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x1851a7 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
+  };
+  let _0x4f8b6c = await _0x768dee("mtop.miniapp.cloud.application.request", _0x4dbdaf, _0x34e39f);
+  if (_0x4f8b6c) {
+    return _0x4f8b6c["data"];
   }
-  return _0x55a1fb.data.lastLevelId;
+  return null;
 }
-async function gameRequest(_0x297e49, _0x2ae1e5) {
-  const _0x1d72ff = {
-      "authority": "shopping.ele.me",
-      "accept": "application/json",
-      "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-      "cache-control": "no-cache",
-      "content-type": "application/x-www-form-urlencoded",
-      "origin": "https://r.ele.me",
-      "pragma": "no-cache",
-      "referer": "https://r.ele.me/linkgame/index.html?navType=3&spm-pre=a2ogi.13162730.zebra-ele-login-module-9089118186&spm=a13.b_activity_kb_m71293.0.0",
-      "cookie": _0x297e49,
-      "x-ele-ua": "RenderWay/H5 AppName/wap Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36",
-      "user-agent": "Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36"
-    },
-    _0x49236a = new Date().getTime(),
-    _0x3db99b = 12574478;
-  var _0x48c4ab = "data=" + encodeURIComponent(JSON.stringify(_0x2ae1e5));
-  const _0x3c7921 = getToken(_0x297e49),
-    _0x29017c = _0x3c7921.split("_")[0],
-    _0x25d63f = await sign(_0x29017c + "&" + _0x49236a + "&" + _0x3db99b + "&" + JSON.stringify(_0x2ae1e5), kami),
-    _0x1db91b = {
-      "url": "https://shopping.ele.me/h5/mtop.alsc.playgame.mini.game.dispatch/1.0/?jsv=2.6.1&appKey=12574478&t=" + _0x49236a + "&sign=" + _0x25d63f + "&api=mtop.alsc.playgame.mini.game.dispatch&v=1.0&type=originaljson&dataType=json&timeout=5000&subDomain=shopping&mainDomain=ele.me&H5Request=true&pageDomain=ele.me&ttid=h5%40chrome_android_87.0.4280.141&SV=5.0",
-      "method": "POST",
-      "headers": _0x1d72ff,
-      "body": _0x48c4ab
-    };
-  return tryCatchPromise(_0x9faa2b => {
-    request(_0x1db91b, async (_0x4f87cc, _0x2c6269, _0x101caa) => {
-      if (!_0x4f87cc && _0x2c6269.statusCode == 200) {
+async function _0xe6e63a(_0x3659dc) {
+  const _0x239196 = new Date()["getTime"]();
+  _0x244760++;
+  const _0x4411d4 = {
+    "body": "{\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
+    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
+    "instance": "INNER",
+    "method": "POST",
+    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
+    "path": "/onlineB/api/game/getAllOpenActivityInfo",
+    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x239196 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
+  };
+  return await _0x768dee("mtop.miniapp.cloud.application.request", _0x3659dc, _0x4411d4);
+}
+async function _0x54ec17(_0x27230d, _0x115188, _0x59c4d3, _0x1a1549 = 1014, _0x244913) {
+  const _0x1b43f3 = new Date()["getTime"]();
+  _0x244760++;
+  const _0x5ecf44 = {
+    "body": "{\"orderQueryId\":\"" + _0x115188 + "\",\"posArray\":" + JSON["stringify"](_0x59c4d3) + ",\"customerId\":\"" + _0x1a1549 + "\",\"type\":" + _0x244913 + ",\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
+    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
+    "instance": "INNER",
+    "method": "POST",
+    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
+    "path": "/api/game/completeOrder",
+    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x1b43f3 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
+  };
+  let _0x3e174f = await _0x768dee("mtop.miniapp.cloud.application.request", _0x27230d, _0x5ecf44);
+  if (_0x3e174f) {
+    let _0x9d72de = _0x3e174f["data"];
+    if (!_0x9d72de) {
+      console["log"](_0x3e174f);
+      return null;
+    }
+    let _0x45eb13 = _0x9d72de["updatePieceArray"];
+    if (_0x45eb13) {
+      for (let _0x176335 = 0; _0x176335 < _0x45eb13["length"]; _0x176335++) {
+        let _0x132eeb = _0x45eb13[_0x176335];
+        for (let _0x49433f = 0; _0x49433f < _0xa8f67f["length"]; _0x49433f++) {
+          let _0x4489d5 = _0xa8f67f[_0x49433f];
+          if (_0x132eeb["pieceId"] === _0x4489d5["pieceId"]) {
+            _0xa8f67f[_0x49433f] = _0x132eeb;
+          }
+        }
+      }
+    }
+    let _0x498986 = _0x9d72de["ownCropMap"];
+    if (_0x498986) {
+      _0x22b780 = _0x498986;
+    }
+    if (_0x9d72de["orderArray"]) {
+      _0xb0cda6 = _0x9d72de["orderArray"];
+    }
+  }
+  return _0x3e174f;
+}
+async function _0x25c58b(_0x4cc044) {
+  const _0x15b9ea = new Date()["getTime"]();
+  _0x244760++;
+  const _0x4a5bfa = {
+    "body": "{\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
+    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
+    "instance": "INNER",
+    "method": "POST",
+    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
+    "path": "/onlineB/api/task/getTasksList",
+    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x15b9ea + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
+  };
+  let _0xc27a30 = await _0x768dee("mtop.miniapp.cloud.application.request", _0x4cc044, _0x4a5bfa);
+  let _0x2cf1a5 = _0xc27a30["data"];
+  if (_0x2cf1a5) {
+    try {
+      let _0x122251 = _0x2cf1a5["taskInfo"]["dailyTasks"];
+      if (_0x122251) {
+        for (const _0x1eea0c of Object["keys"](_0x122251)) {
+          const _0x282ba3 = _0x122251[_0x1eea0c];
+          if (_0x282ba3["type"] === 3 && !_0x282ba3["haveGotReward"]) {
+            let _0x3b45e1 = await _0x100c7f(_0x4cc044, _0x1eea0c);
+            if (_0x3b45e1["data"]) {
+              console["log"]("\u9886\u53D6\u4EFB\u52A1\u5956\u52B1\u5B8C\u6210\uFF0C\u5F53\u524D\u4E50\u56ED\u5E01", _0x3b45e1["data"]["elemCoin"]);
+            } else {}
+          }
+        }
+      }
+    } catch (_0x3dbc0c) {}
+  }
+}
+async function _0x100c7f(_0x85b4f3, _0x29751c) {
+  const _0x461b55 = new Date()["getTime"]();
+  _0x244760++;
+  const _0x450a04 = {
+    "body": "{\"taskId\":" + _0x29751c + ",\"taskType\":0,\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
+    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
+    "instance": "INNER",
+    "method": "POST",
+    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
+    "path": "/api/task/getTaskAward",
+    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x461b55 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
+  };
+  return await _0x768dee("mtop.miniapp.cloud.application.request", _0x85b4f3, _0x450a04);
+}
+async function _0x4338e2(_0x3470b3, _0xf1a2ea) {
+  const _0x3bf80f = new Date()["getTime"]();
+  _0x244760++;
+  const _0x333999 = {
+    "body": "{\"pos\":" + JSON["stringify"](_0xf1a2ea) + ",\"reqIdx\":" + _0x244760 + " ,\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
+    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
+    "instance": "INNER",
+    "method": "POST",
+    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
+    "path": "/onlineB/api/game/cropSell",
+    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x3bf80f + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
+  };
+  let _0x13ff62 = await _0x768dee("mtop.miniapp.cloud.application.request", _0x3470b3, _0x333999);
+  if (_0x13ff62["data"]) {
+    for (let _0x173e36 = 0; _0x173e36 < _0xa8f67f["length"]; _0x173e36++) {
+      let _0x4818db = _0xa8f67f[_0x173e36];
+      if (_0x13ff62["data"]["piece"]["pieceId"] === _0x4818db["pieceId"]) {
+        _0xa8f67f[_0x173e36] = _0x13ff62["data"]["piece"];
+      }
+    }
+    console["log"]("\u552E\u5356\u690D\u7269\uFF0C\u5F53\u524D\u91D1\u5E01", _0x13ff62["data"]["coin"]);
+  }
+  return _0x13ff62;
+}
+async function _0x768dee(_0xe42167, _0x846f90, _0x3c14d6) {
+  const _0x45d61d = {
+    "accept": "application/json",
+    "content-type": "application/x-www-form-urlencoded",
+    "cookie": _0x846f90,
+    "x-miniapp-id-taobao": "3000000088680964",
+    "x-miniapp-version": "0.0.19",
+    "x-mini-appkey": "34351764",
+    "x-miniapp-env": "{\"nbsn\":\"ONLINE\",\"nbsource\":\"online\"}",
+    "x-req-appkey": "34351764",
+    "x-open-biz": "mini-app",
+    "x-open-biz-data": "%7B%22appId%22%3A%223000000088680964%22%2C%22invokerAppId%22%3A%223000000088680964%22%2C%22viaFusionApp%22%3Atrue%7D",
+    "x-exttype": "isv_open_api",
+    "appid": "3000000088680964"
+  };
+  const _0x23aac9 = new Date()["getTime"]();
+  const _0x11b19f = 34351764;
+  const _0x43dafe = "data=" + encodeURIComponent(JSON["stringify"](_0x3c14d6));
+  const _0x208fa6 = getToken(_0x846f90);
+  const _0x93d6d4 = _0x208fa6["split"]("_")[0];
+  const _0x8540c0 = md5(_0x93d6d4 + "&" + _0x23aac9 + "&" + _0x11b19f + "&" + JSON["stringify"](_0x3c14d6));
+  const _0x2ba191 = {
+    "url": "https://shopping.ele.me/h5/" + _0xe42167 + "/1.0/?jsv=2.6.1&appKey=34351764&t=" + _0x23aac9 + "&sign=" + _0x8540c0 + "&api=" + _0xe42167 + "&v=1.0&type=originaljson&ttid=1608030065155%40eleme_android_11.0.38",
+    "method": "POST",
+    "headers": _0x45d61d,
+    "body": _0x43dafe
+  };
+  return tryCatchPromise(_0x2911df => {
+    _0xd960c1(_0x2ba191, async (_0x2299f1, _0x1cb3ee, _0x4e0376) => {
+      if (!_0x2299f1 && _0x1cb3ee["statusCode"] == 200) {
         try {
-          const _0x1652a3 = JSON.parse(_0x101caa),
-            _0x25dc12 = JSON.parse(_0x1652a3.data.data);
-          _0x9faa2b(_0x25dc12);
-        } catch (_0x429949) {
-          console.log(_0x101caa);
-          _0x9faa2b(null);
+          const _0x5a599c = JSON["parse"](_0x4e0376);
+          _0x2911df(_0x5a599c["data"]["data"]);
+        } catch (_0x36f649) {
+          console["log"](_0x4e0376);
+          _0x2911df(null);
         }
       } else {
-        _0x9faa2b(null);
+        _0x2911df(null);
       }
     });
   });
 }
-async function llk_game(_0x381403, _0x612bc4) {
-  const _0x13c747 = await lyb_llk_gamecode(_0x381403, _0x612bc4);
-  if (_0x13c747) {
-    const _0x10e546 = await lyb_llk_passgame(_0x381403, _0x13c747, _0x612bc4);
-    _0x10e546 != 3 && (await llk_game(_0x381403, _0x612bc4));
+let _0x1b7a8d;
+let _0x35bf66;
+let _0xa8f67f = [];
+let _0xb0cda6 = [];
+let _0x4399a0 = [];
+async function _0x31f56d(_0x438d96, _0x427368) {
+  await _0xd42e5(_0x427368);
+  await _0xe6e63a(_0x438d96);
+  let _0x4942b8 = await _0x30b351(_0x438d96);
+  while (_0x4942b8 === 0) {
+    let _0xc5a491 = await _0x2eb09b(_0x438d96);
+    await _0xd42e5(_0xc5a491);
+    _0x4942b8 = await _0x30b351(_0x438d96);
   }
-  return;
+  await _0x25c58b(_0x438d96);
 }
-async function water_login(_0x214240) {
-  const _0x5057ba = {
-      "bizScene": "WATER_SORT",
-      "bizParam": "{\"type\":\"login\"}",
-      "bizMethod": "login"
-    },
-    _0x1b85d6 = await gameRequest(_0x214240, _0x5057ba);
-  return _0x1b85d6;
-}
-async function water_game_success(_0x10ac67) {
-  const _0x54cee7 = {
-      "bizScene": "WATER_SORT",
-      "bizParam": "{\"type\":\"gameSuccess\"}",
-      "bizMethod": "gameSuccess"
-    },
-    _0x42623f = await gameRequest(_0x10ac67, _0x54cee7);
-  return _0x42623f;
-}
-async function water_reward(_0x134550, _0x3d1051) {
-  const _0xc51e55 = {
-      "bizScene": "WATER_SORT",
-      "bizParam": "{\"type\":\"getPassPrize\",\"data\":{\"addNum\":\"" + _0x3d1051 + "\",\"type\":1}}",
-      "bizMethod": "getPassPrize"
-    },
-    _0x4a4fa2 = await gameRequest(_0x134550, _0xc51e55);
-  return _0x4a4fa2;
-}
-async function water_game(_0x2f8419) {
-  const _0x3a526e = await water_login(_0x2f8419),
-    _0x531a74 = _0x3a526e.passConf,
-    _0x5bcad0 = [];
-  for (let _0x230f41 of Object.values(_0x531a74)) {
-    _0x5bcad0.push(_0x230f41.passNum);
-  }
-  var _0x57a513 = await water_game_success(_0x2f8419),
-    _0x3d1956 = _0x57a513.info.todayPass,
-    _0x2d2053 = 0;
-  while (_0x3d1956 <= _0x5bcad0[_0x5bcad0.length - 1]) {
-    _0x57a513 = await water_game_success(_0x2f8419);
-    _0x3d1956 = _0x57a513.info.todayPass;
-    console.log("\u6B22\u4E50\u5012\u6C34\u7B2C" + _0x3d1956 + "\u5173\u95EF\u5173\u6210\u529F");
-    if (_0x5bcad0.includes(_0x3d1956)) {
-      _0x2d2053 = _0x5bcad0.indexOf(_0x3d1956) + 1;
-      const _0xefbff0 = await water_reward(_0x2f8419, _0x2d2053);
-      console.log("\u83B7\u5F97\uFF1A" + _0xefbff0.goldnum + "\u4E50\u56ED\u5E01");
+async function _0xd42e5(_0x5c2fe9) {
+  _0x1b7a8d = null;
+  _0x35bf66 = null;
+  _0xa8f67f = [];
+  _0xb0cda6 = [];
+  _0x4399a0 = [];
+  _0x1b7a8d = _0x5c2fe9["gameId"];
+  _0x35bf66 = _0x5c2fe9["token"];
+  _0x22b780 = _0x5c2fe9["cropInfo"]["ownCropMap"];
+  let _0x35c178 = _0x5c2fe9["gardenInfo"]["checkerboard"];
+  for (let _0x43f0c4 = 0; _0x43f0c4 < _0x35c178["length"]; _0x43f0c4++) {
+    let _0x20c513 = _0x35c178[_0x43f0c4];
+    for (let _0x2ac9ed = 0; _0x2ac9ed < _0x20c513["length"]; _0x2ac9ed++) {
+      let _0xb962aa = _0x20c513[_0x2ac9ed];
+      if (!_0xb962aa["isLock"]) {
+        _0xa8f67f["push"](_0xb962aa);
+      }
     }
   }
-  console.log("\u5FEB\u4E50\u5012\u6C34\u95EF\u5173\u5B8C\u6210");
+  Object["keys"](_0x22b780)["forEach"](_0x48b5e7 => {
+    let _0x1b4b83 = _0x22b780[_0x48b5e7];
+    if (_0x1b4b83["seeds"]["length"] > 0) {
+      let _0x409985 = _0x3f4a47(_0x1b4b83["queryId"]);
+      if (_0x409985) {
+        _0x409985["seeds"] = _0x1b4b83["seeds"];
+        _0x4399a0["push"](_0x409985);
+      }
+    }
+  });
+  _0xb0cda6 = _0x5c2fe9["orderInfo"]["orderArray"];
 }
-async function start() {
-  await validateCarmeWithType(kami, 1);
-  const _0x38e8d8 = getCookies();
-  for (let _0x4dde97 = 0; _0x4dde97 < _0x38e8d8.length; _0x4dde97++) {
-    const _0x2a66d2 = _0x38e8d8[_0x4dde97];
-    if (!_0x2a66d2) console.log(" \u274C\u65E0\u6548\u7528\u6237\u4FE1\u606F, \u8BF7\u91CD\u65B0\u83B7\u53D6ck");else try {
-      let _0x267afc = await checkCk(_0x2a66d2, _0x4dde97);
-      if (!_0x267afc) continue;
-      let _0x26d709 = await getUserInfo(_0x267afc);
-      if (!_0x26d709.username) {
-        console.log("\u7B2C", _0x4dde97 + 1, "\u8D26\u53F7\u5931\u6548\uFF01\u8BF7\u91CD\u65B0\u767B\u5F55\uFF01\uFF01\uFF01\uD83D\uDE2D");
+async function _0x1de15a(_0x313069, _0x1e6599, _0x553533) {
+  let _0x46ed77 = true;
+  let _0x4e2c17 = [];
+  for (let _0x58ff2b = 0; _0x58ff2b < _0x313069["length"]; _0x58ff2b++) {
+    let _0x253ba8 = _0x313069[_0x58ff2b];
+    let _0x6b2252 = _0x1c2c8b(_0x253ba8);
+    if (!_0x6b2252) {
+      _0x46ed77 = false;
+      break;
+    } else {
+      _0x4e2c17["push"](_0x6b2252["pos"]);
+    }
+  }
+  if (_0x46ed77) {
+    let _0x4ed096 = await _0x54ec17(_0x1e6599, _0x553533["queryId"], _0x4e2c17, _0x553533["customerId"], _0x553533["type"]);
+    if (_0x4ed096) {
+      console["log"]("\u5B8C\u6210\u8BA2\u5355\uFF0C\u83B7\u5F97", _0x553533["orderValue"], "\u91D1\u5E01");
+      return 3;
+    }
+  }
+}
+async function _0x3d9d6b(_0x18112d) {
+  for (let _0x5a94ed = 0; _0x5a94ed < _0x4399a0["length"]; _0x5a94ed++) {
+    let _0x104134 = _0x4399a0[_0x5a94ed];
+    if (!_0x104134) {
+      console["log"]("\u9700\u8981\u89E3\u9501\u65B0\u6BCD\u4F53\u690D\u7269");
+      return;
+    }
+    let _0x58e621 = [];
+    for (let _0x103451 = 0; _0x103451 < _0xa8f67f["length"]; _0x103451++) {
+      let _0x336da4 = _0xa8f67f[_0x103451];
+      if (!_0x336da4["cropQueryId"]) {
+        const _0x3f3134 = {
+          "producedCrop": {},
+          "type": 2,
+          "pos1": _0x104134["pos"],
+          "pos2": _0x336da4["pos"],
+          "timestamp": new Date()["getTime"]()
+        };
+        _0x3f3134["producedCrop"]["queryId"] = _0x1a886c(_0x22b780, 1);
+        _0x3f3134["producedCrop"]["cropId"] = _0x104134["seeds"][0];
+        _0x58e621["push"](_0x3f3134);
+      }
+    }
+    if (_0x58e621["length"] > 0) {
+      console["log"]("\u5F00\u59CB\u79CD\u690D\u65B0\u7684\u690D\u7269");
+      let _0x328dd7 = await _0x1024fc(_0x18112d, _0x58e621);
+      if (_0x328dd7 === -1) {
+        return -1;
+      } else if (_0x328dd7 === 1 || _0x328dd7 == null) {
         continue;
       }
-      const _0x141662 = _0x26d709.user_id;
-      await checkCarmeCount(kami, _0x141662, GAME_TYEP);
-      console.log("******\u5F00\u59CB\u3010\u997F\u4E86\u4E48\u8D26\u53F7", _0x4dde97 + 1, "\u3011", _0x26d709.username, "*********");
-      await lyb_sign(_0x267afc);
-      await lottery(_0x267afc);
-      const _0x57279d = await lyb_llk_token(_0x267afc);
-      await llk_game(_0x267afc, _0x57279d);
-      await water_game(_0x267afc);
-      console.log("\u9632\u6B62\u9ED1\u53F7\u5EF6\u65F610-15\u79D2");
-      await wait(getRandom(10, 15));
-    } catch (_0x5974bf) {
-      console.log(_0x5974bf);
+      return 0;
     }
   }
-  process.exit(0);
 }
-start();
-function getRandom(_0x39379b, _0x3c6083) {
-  return Math.floor(Math.random() * (_0x3c6083 - _0x39379b + 1) + _0x39379b);
-}
-function Env(_0x4e7acc, _0x4ece95) {
-  "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
-  class _0x4a95de {
-    constructor(_0x6997a9) {
-      this.env = _0x6997a9;
+async function _0x30b351(_0x3bd27a) {
+  for (let _0xa8b92d = 0; _0xa8b92d < _0xa8f67f["length"]; _0xa8b92d++) {
+    let _0x2fb245 = _0xa8f67f[_0xa8b92d];
+    if (_0x2fb245["cropQueryId"]) {
+      if (_0x22b780[_0x2fb245["cropQueryId"]]["type"] === 1) {
+        await _0x4338e2(_0x3bd27a, _0x2fb245["pos"]);
+      }
     }
-    ["send"](_0x3d577b, _0x47a142 = "GET") {
-      _0x3d577b = "string" == typeof _0x3d577b ? {
-        "url": _0x3d577b
-      } : _0x3d577b;
-      let _0x497cde = this.get;
-      return "POST" === _0x47a142 && (_0x497cde = this.post), new Promise((_0x188685, _0x21cdd5) => {
-        _0x497cde.call(this, _0x3d577b, (_0x32a6ac, _0x35172f, _0x1cabfc) => {
-          _0x32a6ac ? _0x21cdd5(_0x32a6ac) : _0x188685(_0x35172f);
+  }
+  return await _0x3d9d6b(_0x3bd27a);
+}
+async function _0x3ed2e4(_0x5eb131) {
+  const _0x190f14 = new Date()["getTime"]();
+  _0x244760++;
+  const _0x35ecd1 = {
+    "body": "{\"type\":2,\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
+    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
+    "instance": "INNER",
+    "method": "POST",
+    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
+    "path": "/onlineB/api/game/refresh",
+    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x190f14 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
+  };
+  let _0x417f26 = await _0x768dee("mtop.miniapp.cloud.application.request", _0x5eb131, _0x35ecd1);
+  return _0x417f26;
+}
+function _0x1c2c8b(_0x46007f) {
+  for (let _0x11e4f8 = 0; _0x11e4f8 < _0xa8f67f["length"]; _0x11e4f8++) {
+    let _0x28aa5d = _0xa8f67f[_0x11e4f8];
+    let _0x3bb85d = _0x28aa5d["cropQueryId"];
+    if (_0x3bb85d) {
+      let _0x3286eb = _0x22b780[_0x3bb85d];
+      if (_0x3286eb) {
+        if (_0x3286eb["id"] === _0x46007f) {
+          return _0x28aa5d;
+        }
+      }
+    }
+  }
+  return null;
+}
+function _0x3f4a47(_0x1aea5d) {
+  for (let _0x2605f4 = 0; _0x2605f4 < _0xa8f67f["length"]; _0x2605f4++) {
+    let _0x4ed3d8 = _0xa8f67f[_0x2605f4];
+    if (_0x4ed3d8["cropQueryId"] === _0x1aea5d) {
+      return _0x4ed3d8;
+    }
+  }
+  return null;
+}
+function _0x1a886c(_0x2b3714, _0xecfab1) {
+  var _0xa54c9c = _0x40dc91(Date["now"](), Math["random"]());
+  if (!_0x2b3714 || !_0x2b3714[_0xa54c9c] || !_0xecfab1 || _0xecfab1 <= 0) return _0xa54c9c;
+  for (var _0x5c252f = 0; _0x5c252f < _0xecfab1; _0x5c252f++) {
+    if (!_0x2b3714[_0xa54c9c = _0x40dc91(Date["now"](), Math["random"]())]) return _0xa54c9c;
+    console["error"]("generate id failed, retry:" + (_0x5c252f + 1) + "/" + _0xecfab1);
+  }
+}
+function _0x40dc91() {
+  for (var _0x10372a = [], _0x2c7add = 0; _0x2c7add < arguments["length"]; _0x2c7add++) {
+    _0x10372a[_0x2c7add] = arguments[_0x2c7add];
+  }
+  return md5(_0x10372a["join"]("+"))["toString"]();
+}
+async function _0x1024fc(_0x2e65b5, _0x3fff1b) {
+  await wait(3);
+  _0x244760++;
+  let _0x2959d6 = JSON["stringify"](_0x3fff1b);
+  const _0x2b1d94 = {
+    "body": "{\"cmds\":" + _0x2959d6 + ",\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
+    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
+    "instance": "INNER",
+    "method": "POST",
+    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
+    "path": "/onlineB/api/game/cmdExec",
+    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + Date["now"]() + "\",\"mc-env\":\"online\",\"mc-network\":\"NOTREACHABLE\"}"
+  };
+  let _0x5a38ea = await _0x768dee("mtop.miniapp.cloud.application.request", _0x2e65b5, _0x2b1d94);
+  if (_0x5a38ea) {
+    let _0x4691e5 = _0x5a38ea["data"];
+    if (!_0x4691e5) {
+      console["log"](_0x5a38ea);
+      return null;
+    }
+    if (_0x4691e5["dayUsedEnergyNum"]) {
+      console["log"]("\u4ECA\u65E5\u6D88\u8017\u7684\u4F53\u529B\u4E3A\uFF1A" + _0x4691e5["dayUsedEnergyNum"]);
+      if (_0x4691e5["dayUsedEnergyNum"] > 299) {
+        await _0x25c58b(_0x2e65b5);
+        console["log"]("\u4ECA\u65E5\u6240\u6709\u4E50\u56ED\u5E01\u4EFB\u52A1\u5DF2\u5B8C\u6210");
+        return -1;
+      }
+    }
+    let _0x4af419 = _0x4691e5["changedPieceList"];
+    if (_0x4af419["length"] === 0) {
+      if (_0x4691e5["energy"] === 0) {
+        console["log"]("\u4F53\u529B\u4E0D\u8DB3");
+        return -1;
+      } else {
+        console["log"]("\u79CD\u690D\u5931\u8D25\uFF0C\u7A0D\u540E\u91CD\u8BD5");
+        return 1;
+      }
+    }
+    if (_0x4af419) {
+      for (let _0x1a25ec = 0; _0x1a25ec < _0x4af419["length"]; _0x1a25ec++) {
+        let _0x5017fe = _0x4af419[_0x1a25ec];
+        for (let _0x55b2f2 = 0; _0x55b2f2 < _0xa8f67f["length"]; _0x55b2f2++) {
+          let _0xd36e9 = _0xa8f67f[_0x55b2f2];
+          if (_0x5017fe["pieceId"] === _0xd36e9["pieceId"]) {
+            _0xa8f67f[_0x55b2f2] = _0x5017fe;
+          }
+        }
+      }
+    }
+    let _0x59adef = _0x4691e5["changedCropMap"];
+    if (_0x59adef) {
+      Object["keys"](_0x59adef)["forEach"](_0x476275 => {
+        if (_0x22b780[_0x476275]) {
+          if (_0x59adef[_0x476275]["isDelete"]) {
+            delete _0x22b780[_0x476275];
+          } else {
+            _0x22b780[_0x476275] = _0x59adef[_0x476275]["cropInfo"];
+          }
+        } else {
+          _0x22b780[_0x476275] = _0x59adef[_0x476275]["cropInfo"];
+        }
+      });
+    }
+  }
+  return _0x5a38ea;
+}
+async function _0x2b4a48() {
+  const _0x122270 = getCookies();
+  for (let _0x58e74c = 0; _0x58e74c < _0x122270["length"]; _0x58e74c++) {
+    const _0xfb13b1 = _0x122270[_0x58e74c];
+    if (!_0xfb13b1) {
+      console["log"](" \u274C\u65E0\u6548\u7528\u6237\u4FE1\u606F, \u8BF7\u91CD\u65B0\u83B7\u53D6ck");
+    } else {
+      try {
+        let _0xa95efd = await checkCk(_0xfb13b1, _0x58e74c);
+        if (!_0xa95efd) {
+          continue;
+        }
+        let _0x2003d5 = await getUserInfo(_0xa95efd);
+        if (!_0x2003d5["username"]) {
+          console["log"]("\u7B2C", _0x58e74c + 1, "\u8D26\u53F7\u5931\u6548\uFF01\u8BF7\u91CD\u65B0\u767B\u5F55\uFF01\uFF01\uFF01\uD83D\uDE2D");
+          continue;
+        }
+        const _0x35e63c = _0x2003d5["user_id"];
+        console["log"]("******\u5F00\u59CB\u3010\u997F\u4E86\u4E48\u8D26\u53F7", _0x58e74c + 1, "\u3011", _0x2003d5["username"], "*********");
+        let _0x15d4ce = await _0x1d5d09(_0xa95efd);
+        if (!_0x15d4ce) {
+          console["log"]("\u8BF7\u5B8C\u6210\u5B9E\u540D\u8BA4\u8BC1\u540E\u518D\u6765\u73A9\u6E38\u620F");
+          continue;
+        }
+        let _0x4c52f9 = await _0x2eb09b(_0xa95efd);
+        if (_0x4c52f9["gardenInfo"]["level"] < 4) {
+          console["log"]("\u8BF7\u5148\u73A9\u5230 4 \u7EA7\u518D\u8FD0\u884C\u811A\u672C");
+          continue;
+        }
+        await _0x31f56d(_0xa95efd, _0x4c52f9);
+      } catch (_0x4236b6) {
+        console["log"](_0x4236b6);
+      }
+    }
+  }
+  process["exit"](0);
+}
+_0x2b4a48();
+
+// prettier-ignore
+function Env(t, e) {
+  "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
+  class s {
+    constructor(t) {
+      this.env = t;
+    }
+    send(t, e = "GET") {
+      t = "string" == typeof t ? {
+        url: t
+      } : t;
+      let s = this.get;
+      return "POST" === e && (s = this.post), new Promise((e, i) => {
+        s.call(this, t, (t, s, r) => {
+          t ? i(t) : e(s);
         });
       });
     }
-    ["get"](_0x48e91e) {
-      return this.send.call(this.env, _0x48e91e);
+    get(t) {
+      return this.send.call(this.env, t);
     }
-    ["post"](_0x54298c) {
-      return this.send.call(this.env, _0x54298c, "POST");
+    post(t) {
+      return this.send.call(this.env, t, "POST");
     }
   }
   return new class {
-    constructor(_0x556bac, _0x1a2cea) {
-      this.name = _0x556bac;
-      this.http = new _0x4a95de(this);
-      this.data = null;
-      this.dataFile = "box.dat";
-      this.logs = [];
-      this.isMute = !1;
-      this.isNeedRewrite = !1;
-      this.logSeparator = "\n";
-      this.startTime = new Date().getTime();
-      Object.assign(this, _0x1a2cea);
-      this.log("", "\uD83D\uDD14" + this.name + ", \u5F00\u59CB!");
+    constructor(t, e) {
+      this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = new Date().getTime(), Object.assign(this, e), this.log("", `🔔${this.name}, 开始!`);
     }
-    ["isNode"]() {
+    isNode() {
       return "undefined" != typeof module && !!module.exports;
     }
-    ["isQuanX"]() {
+    isQuanX() {
       return "undefined" != typeof $task;
     }
-    ["isSurge"]() {
+    isSurge() {
       return "undefined" != typeof $httpClient && "undefined" == typeof $loon;
     }
-    ["isLoon"]() {
+    isLoon() {
       return "undefined" != typeof $loon;
     }
-    ["toObj"](_0x3cff15, _0x1f3c3b = null) {
+    toObj(t, e = null) {
       try {
-        return JSON.parse(_0x3cff15);
+        return JSON.parse(t);
       } catch {
-        return _0x1f3c3b;
+        return e;
       }
     }
-    ["toStr"](_0x5a7e31, _0x3a5148 = null) {
+    toStr(t, e = null) {
       try {
-        return JSON.stringify(_0x5a7e31);
+        return JSON.stringify(t);
       } catch {
-        return _0x3a5148;
+        return e;
       }
     }
-    ["getjson"](_0x4868b4, _0x5c4cbf) {
-      let _0x45bfbf = _0x5c4cbf;
-      const _0x59389a = this.getdata(_0x4868b4);
-      if (_0x59389a) try {
-        _0x45bfbf = JSON.parse(this.getdata(_0x4868b4));
+    getjson(t, e) {
+      let s = e;
+      const i = this.getdata(t);
+      if (i) try {
+        s = JSON.parse(this.getdata(t));
       } catch {}
-      return _0x45bfbf;
+      return s;
     }
-    ["setjson"](_0x1de8ba, _0x466dfb) {
+    setjson(t, e) {
       try {
-        return this.setdata(JSON.stringify(_0x1de8ba), _0x466dfb);
+        return this.setdata(JSON.stringify(t), e);
       } catch {
         return !1;
       }
     }
-    ["getScript"](_0x4f6b6e) {
-      return new Promise(_0x455825 => {
+    getScript(t) {
+      return new Promise(e => {
         this.get({
-          "url": _0x4f6b6e
-        }, (_0x3313cd, _0x45e310, _0x114fd8) => _0x455825(_0x114fd8));
+          url: t
+        }, (t, s, i) => e(i));
       });
     }
-    ["runScript"](_0x506b8c, _0x4bc570) {
-      return new Promise(_0x2476f6 => {
-        let _0x192b9a = this.getdata("@chavy_boxjs_userCfgs.httpapi");
-        _0x192b9a = _0x192b9a ? _0x192b9a.replace(/\n/g, "").trim() : _0x192b9a;
-        let _0x74dce7 = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
-        _0x74dce7 = _0x74dce7 ? 1 * _0x74dce7 : 20;
-        _0x74dce7 = _0x4bc570 && _0x4bc570.timeout ? _0x4bc570.timeout : _0x74dce7;
-        const [_0x55529c, _0x24c45d] = _0x192b9a.split("@"),
-          _0x31b9df = {
-            "url": "http://" + _0x24c45d + "/v1/scripting/evaluate",
-            "body": {
-              "script_text": _0x506b8c,
-              "mock_type": "cron",
-              "timeout": _0x74dce7
+    runScript(t, e) {
+      return new Promise(s => {
+        let i = this.getdata("@chavy_boxjs_userCfgs.httpapi");
+        i = i ? i.replace(/\n/g, "").trim() : i;
+        let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
+        r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
+        const [o, h] = i.split("@"),
+          n = {
+            url: `http://${h}/v1/scripting/evaluate`,
+            body: {
+              script_text: t,
+              mock_type: "cron",
+              timeout: r
             },
-            "headers": {
-              "X-Key": _0x55529c,
-              "Accept": "*/*"
+            headers: {
+              "X-Key": o,
+              Accept: "*/*"
             }
           };
-        this.post(_0x31b9df, (_0x2d2751, _0x5a10eb, _0x5a9e15) => _0x2476f6(_0x5a9e15));
-      }).catch(_0x830f29 => this.logErr(_0x830f29));
+        this.post(n, (t, e, i) => s(i));
+      }).catch(t => this.logErr(t));
     }
-    ["loaddata"]() {
+    loaddata() {
       if (!this.isNode()) return {};
       {
-        this.fs = this.fs ? this.fs : require("fs");
-        this.path = this.path ? this.path : require("path");
-        const _0x7fbf9d = this.path.resolve(this.dataFile),
-          _0x645738 = this.path.resolve(process.cwd(), this.dataFile),
-          _0x345226 = this.fs.existsSync(_0x7fbf9d),
-          _0x85dd1a = !_0x345226 && this.fs.existsSync(_0x645738);
-        if (!_0x345226 && !_0x85dd1a) return {};
+        this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
+        const t = this.path.resolve(this.dataFile),
+          e = this.path.resolve(process.cwd(), this.dataFile),
+          s = this.fs.existsSync(t),
+          i = !s && this.fs.existsSync(e);
+        if (!s && !i) return {};
         {
-          const _0x57ac7b = _0x345226 ? _0x7fbf9d : _0x645738;
+          const i = s ? t : e;
           try {
-            return JSON.parse(this.fs.readFileSync(_0x57ac7b));
-          } catch (_0x5bec7e) {
+            return JSON.parse(this.fs.readFileSync(i));
+          } catch (t) {
             return {};
           }
         }
       }
     }
-    ["writedata"]() {
+    writedata() {
       if (this.isNode()) {
-        this.fs = this.fs ? this.fs : require("fs");
-        this.path = this.path ? this.path : require("path");
-        const _0x551cac = this.path.resolve(this.dataFile),
-          _0x33b4fe = this.path.resolve(process.cwd(), this.dataFile),
-          _0x440a02 = this.fs.existsSync(_0x551cac),
-          _0x3eebc8 = !_0x440a02 && this.fs.existsSync(_0x33b4fe),
-          _0x5a0c23 = JSON.stringify(this.data);
-        _0x440a02 ? this.fs.writeFileSync(_0x551cac, _0x5a0c23) : _0x3eebc8 ? this.fs.writeFileSync(_0x33b4fe, _0x5a0c23) : this.fs.writeFileSync(_0x551cac, _0x5a0c23);
+        this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
+        const t = this.path.resolve(this.dataFile),
+          e = this.path.resolve(process.cwd(), this.dataFile),
+          s = this.fs.existsSync(t),
+          i = !s && this.fs.existsSync(e),
+          r = JSON.stringify(this.data);
+        s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r);
       }
     }
-    ["lodash_get"](_0x15acb1, _0x54a032, _0x6d6933) {
-      const _0x8fa81 = _0x54a032.replace(/\[(\d+)\]/g, ".$1").split(".");
-      let _0x13dd5d = _0x15acb1;
-      for (const _0x3004c1 of _0x8fa81) if (_0x13dd5d = Object(_0x13dd5d)[_0x3004c1], void 0 === _0x13dd5d) return _0x6d6933;
-      return _0x13dd5d;
+    lodash_get(t, e, s) {
+      const i = e.replace(/\[(\d+)\]/g, ".$1").split(".");
+      let r = t;
+      for (const t of i) if (r = Object(r)[t], void 0 === r) return s;
+      return r;
     }
-    ["lodash_set"](_0x584125, _0x319199, _0x4ade7c) {
-      return Object(_0x584125) !== _0x584125 ? _0x584125 : (Array.isArray(_0x319199) || (_0x319199 = _0x319199.toString().match(/[^.[\]]+/g) || []), _0x319199.slice(0, -1).reduce((_0x6a49ac, _0x55a543, _0x5371fa) => Object(_0x6a49ac[_0x55a543]) === _0x6a49ac[_0x55a543] ? _0x6a49ac[_0x55a543] : _0x6a49ac[_0x55a543] = Math.abs(_0x319199[_0x5371fa + 1]) >> 0 == +_0x319199[_0x5371fa + 1] ? [] : {}, _0x584125)[_0x319199[_0x319199.length - 1]] = _0x4ade7c, _0x584125);
+    lodash_set(t, e, s) {
+      return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString().match(/[^.[\]]+/g) || []), e.slice(0, -1).reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t);
     }
-    ["getdata"](_0x399f10) {
-      let _0x52f1f7 = this.getval(_0x399f10);
-      if (/^@/.test(_0x399f10)) {
-        const [, _0x2391fe, _0x193958] = /^@(.*?)\.(.*?)$/.exec(_0x399f10),
-          _0x4fb884 = _0x2391fe ? this.getval(_0x2391fe) : "";
-        if (_0x4fb884) {
-          try {
-            const _0x1c3281 = JSON.parse(_0x4fb884);
-            _0x52f1f7 = _0x1c3281 ? this.lodash_get(_0x1c3281, _0x193958, "") : _0x52f1f7;
-          } catch (_0x282396) {
-            _0x52f1f7 = "";
-          }
+    getdata(t) {
+      let e = this.getval(t);
+      if (/^@/.test(t)) {
+        const [, s, i] = /^@(.*?)\.(.*?)$/.exec(t),
+          r = s ? this.getval(s) : "";
+        if (r) try {
+          const t = JSON.parse(r);
+          e = t ? this.lodash_get(t, i, "") : e;
+        } catch (t) {
+          e = "";
         }
       }
-      return _0x52f1f7;
+      return e;
     }
-    ["setdata"](_0x271277, _0x2aad87) {
-      let _0x8ba3c0 = false;
-      if (/^@/.test(_0x2aad87)) {
-        const [, _0x3d8031, _0xb2259f] = /^@(.*?)\.(.*?)$/.exec(_0x2aad87),
-          _0x28e3ad = this.getval(_0x3d8031),
-          _0xde413f = _0x3d8031 ? "null" === _0x28e3ad ? null : _0x28e3ad || "{}" : "{}";
+    setdata(t, e) {
+      let s = !1;
+      if (/^@/.test(e)) {
+        const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e),
+          o = this.getval(i),
+          h = i ? "null" === o ? null : o || "{}" : "{}";
         try {
-          const _0xec890 = JSON.parse(_0xde413f);
-          this.lodash_set(_0xec890, _0xb2259f, _0x271277);
-          _0x8ba3c0 = this.setval(JSON.stringify(_0xec890), _0x3d8031);
-        } catch (_0xe6d5af) {
-          const _0x367e33 = {};
-          this.lodash_set(_0x367e33, _0xb2259f, _0x271277);
-          _0x8ba3c0 = this.setval(JSON.stringify(_0x367e33), _0x3d8031);
+          const e = JSON.parse(h);
+          this.lodash_set(e, r, t), s = this.setval(JSON.stringify(e), i);
+        } catch (e) {
+          const o = {};
+          this.lodash_set(o, r, t), s = this.setval(JSON.stringify(o), i);
         }
-      } else _0x8ba3c0 = this.setval(_0x271277, _0x2aad87);
-      return _0x8ba3c0;
+      } else s = this.setval(t, e);
+      return s;
     }
-    ["getval"](_0x26e052) {
-      return this.isSurge() || this.isLoon() ? $persistentStore.read(_0x26e052) : this.isQuanX() ? $prefs.valueForKey(_0x26e052) : this.isNode() ? (this.data = this.loaddata(), this.data[_0x26e052]) : this.data && this.data[_0x26e052] || null;
+    getval(t) {
+      return this.isSurge() || this.isLoon() ? $persistentStore.read(t) : this.isQuanX() ? $prefs.valueForKey(t) : this.isNode() ? (this.data = this.loaddata(), this.data[t]) : this.data && this.data[t] || null;
     }
-    ["setval"](_0x424ab7, _0x39f57d) {
-      return this.isSurge() || this.isLoon() ? $persistentStore.write(_0x424ab7, _0x39f57d) : this.isQuanX() ? $prefs.setValueForKey(_0x424ab7, _0x39f57d) : this.isNode() ? (this.data = this.loaddata(), this.data[_0x39f57d] = _0x424ab7, this.writedata(), !0) : this.data && this.data[_0x39f57d] || null;
+    setval(t, e) {
+      return this.isSurge() || this.isLoon() ? $persistentStore.write(t, e) : this.isQuanX() ? $prefs.setValueForKey(t, e) : this.isNode() ? (this.data = this.loaddata(), this.data[e] = t, this.writedata(), !0) : this.data && this.data[e] || null;
     }
-    ["initGotEnv"](_0x13e8b0) {
-      this.got = this.got ? this.got : require("got");
-      this.cktough = this.cktough ? this.cktough : require("tough-cookie");
-      this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar();
-      _0x13e8b0 && (_0x13e8b0.headers = _0x13e8b0.headers ? _0x13e8b0.headers : {}, void 0 === _0x13e8b0.headers.Cookie && void 0 === _0x13e8b0.cookieJar && (_0x13e8b0.cookieJar = this.ckjar));
+    initGotEnv(t) {
+      this.got = this.got ? this.got : require("got"), this.cktough = this.cktough ? this.cktough : require("tough-cookie"), this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar(), t && (t.headers = t.headers ? t.headers : {}, void 0 === t.headers.Cookie && void 0 === t.cookieJar && (t.cookieJar = this.ckjar));
     }
-    ["get"](_0x33e617, _0x1b4e79 = () => {}) {
-      _0x33e617.headers && (delete _0x33e617.headers["Content-Type"], delete _0x33e617.headers["Content-Length"]);
-      this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (_0x33e617.headers = _0x33e617.headers || {}, Object.assign(_0x33e617.headers, {
+    get(t, e = () => {}) {
+      t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {
         "X-Surge-Skip-Scripting": !1
-      })), $httpClient.get(_0x33e617, (_0x1c8d07, _0x19d8dc, _0x5a0239) => {
-        !_0x1c8d07 && _0x19d8dc && (_0x19d8dc.body = _0x5a0239, _0x19d8dc.statusCode = _0x19d8dc.status);
-        _0x1b4e79(_0x1c8d07, _0x19d8dc, _0x5a0239);
-      })) : this.isQuanX() ? (this.isNeedRewrite && (_0x33e617.opts = _0x33e617.opts || {}, Object.assign(_0x33e617.opts, {
-        "hints": !1
-      })), $task.fetch(_0x33e617).then(_0x3b0ec7 => {
+      })), $httpClient.get(t, (t, s, i) => {
+        !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i);
+      })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {
+        hints: !1
+      })), $task.fetch(t).then(t => {
         const {
-          statusCode: _0x395f74,
-          statusCode: _0x217c90,
-          headers: _0x311792,
-          body: _0xed4107
-        } = _0x3b0ec7;
-        _0x1b4e79(null, {
-          "status": _0x395f74,
-          "statusCode": _0x217c90,
-          "headers": _0x311792,
-          "body": _0xed4107
-        }, _0xed4107);
-      }, _0x5e056f => _0x1b4e79(_0x5e056f))) : this.isNode() && (this.initGotEnv(_0x33e617), this.got(_0x33e617).on("redirect", (_0x32b6be, _0x573bdd) => {
+          statusCode: s,
+          statusCode: i,
+          headers: r,
+          body: o
+        } = t;
+        e(null, {
+          status: s,
+          statusCode: i,
+          headers: r,
+          body: o
+        }, o);
+      }, t => e(t))) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => {
         try {
-          if (_0x32b6be.headers["set-cookie"]) {
-            const _0x652696 = _0x32b6be.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();
-            _0x652696 && this.ckjar.setCookieSync(_0x652696, null);
-            _0x573bdd.cookieJar = this.ckjar;
+          if (t.headers["set-cookie"]) {
+            const s = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();
+            s && this.ckjar.setCookieSync(s, null), e.cookieJar = this.ckjar;
           }
-        } catch (_0x3090e) {
-          this.logErr(_0x3090e);
+        } catch (t) {
+          this.logErr(t);
         }
-      }).then(_0x46786d => {
+      }).then(t => {
         const {
-          statusCode: _0x5c8ac2,
-          statusCode: _0x380e08,
-          headers: _0x3e570a,
-          body: _0x324a10
-        } = _0x46786d;
-        _0x1b4e79(null, {
-          "status": _0x5c8ac2,
-          "statusCode": _0x380e08,
-          "headers": _0x3e570a,
-          "body": _0x324a10
-        }, _0x324a10);
-      }, _0x216cbd => {
+          statusCode: s,
+          statusCode: i,
+          headers: r,
+          body: o
+        } = t;
+        e(null, {
+          status: s,
+          statusCode: i,
+          headers: r,
+          body: o
+        }, o);
+      }, t => {
         const {
-          message: _0x290614,
-          response: _0x50393a
-        } = _0x216cbd;
-        _0x1b4e79(_0x290614, _0x50393a, _0x50393a && _0x50393a.body);
+          message: s,
+          response: i
+        } = t;
+        e(s, i, i && i.body);
       }));
     }
-    ["post"](_0x177610, _0x448d0a = () => {}) {
-      if (_0x177610.body && _0x177610.headers && !_0x177610.headers["Content-Type"] && (_0x177610.headers["Content-Type"] = "application/x-www-form-urlencoded"), _0x177610.headers && delete _0x177610.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (_0x177610.headers = _0x177610.headers || {}, Object.assign(_0x177610.headers, {
+    post(t, e = () => {}) {
+      if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {
         "X-Surge-Skip-Scripting": !1
-      })), $httpClient.post(_0x177610, (_0x36f8bd, _0x29502b, _0x35a44f) => {
-        !_0x36f8bd && _0x29502b && (_0x29502b.body = _0x35a44f, _0x29502b.statusCode = _0x29502b.status);
-        _0x448d0a(_0x36f8bd, _0x29502b, _0x35a44f);
-      });else {
-        if (this.isQuanX()) _0x177610.method = "POST", this.isNeedRewrite && (_0x177610.opts = _0x177610.opts || {}, Object.assign(_0x177610.opts, {
-          "hints": !1
-        })), $task.fetch(_0x177610).then(_0x888294 => {
+      })), $httpClient.post(t, (t, s, i) => {
+        !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i);
+      });else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {
+        hints: !1
+      })), $task.fetch(t).then(t => {
+        const {
+          statusCode: s,
+          statusCode: i,
+          headers: r,
+          body: o
+        } = t;
+        e(null, {
+          status: s,
+          statusCode: i,
+          headers: r,
+          body: o
+        }, o);
+      }, t => e(t));else if (this.isNode()) {
+        this.initGotEnv(t);
+        const {
+          url: s,
+          ...i
+        } = t;
+        this.got.post(s, i).then(t => {
           const {
-            statusCode: _0x1547a9,
-            statusCode: _0xc9fee8,
-            headers: _0x2d35cb,
-            body: _0xa7fc3a
-          } = _0x888294;
-          _0x448d0a(null, {
-            "status": _0x1547a9,
-            "statusCode": _0xc9fee8,
-            "headers": _0x2d35cb,
-            "body": _0xa7fc3a
-          }, _0xa7fc3a);
-        }, _0x3d5ae0 => _0x448d0a(_0x3d5ae0));else {
-          if (this.isNode()) {
-            this.initGotEnv(_0x177610);
-            const {
-              url: _0x469e96,
-              ..._0x1d0ef0
-            } = _0x177610;
-            this.got.post(_0x469e96, _0x1d0ef0).then(_0x340e94 => {
-              const {
-                statusCode: _0x5d2205,
-                statusCode: _0x112690,
-                headers: _0x5db16d,
-                body: _0x3b6a2e
-              } = _0x340e94;
-              _0x448d0a(null, {
-                "status": _0x5d2205,
-                "statusCode": _0x112690,
-                "headers": _0x5db16d,
-                "body": _0x3b6a2e
-              }, _0x3b6a2e);
-            }, _0x41f9e8 => {
-              const {
-                message: _0x578987,
-                response: _0x512231
-              } = _0x41f9e8;
-              _0x448d0a(_0x578987, _0x512231, _0x512231 && _0x512231.body);
-            });
-          }
-        }
+            statusCode: s,
+            statusCode: i,
+            headers: r,
+            body: o
+          } = t;
+          e(null, {
+            status: s,
+            statusCode: i,
+            headers: r,
+            body: o
+          }, o);
+        }, t => {
+          const {
+            message: s,
+            response: i
+          } = t;
+          e(s, i, i && i.body);
+        });
       }
     }
-    ["time"](_0x4831bc, _0x5e3526 = null) {
-      const _0x5d1bc8 = _0x5e3526 ? new Date(_0x5e3526) : new Date();
-      let _0x48ec92 = {
-        "M+": _0x5d1bc8.getMonth() + 1,
-        "d+": _0x5d1bc8.getDate(),
-        "H+": _0x5d1bc8.getHours(),
-        "m+": _0x5d1bc8.getMinutes(),
-        "s+": _0x5d1bc8.getSeconds(),
-        "q+": Math.floor((_0x5d1bc8.getMonth() + 3) / 3),
-        "S": _0x5d1bc8.getMilliseconds()
+    time(t, e = null) {
+      const s = e ? new Date(e) : new Date();
+      let i = {
+        "M+": s.getMonth() + 1,
+        "d+": s.getDate(),
+        "H+": s.getHours(),
+        "m+": s.getMinutes(),
+        "s+": s.getSeconds(),
+        "q+": Math.floor((s.getMonth() + 3) / 3),
+        S: s.getMilliseconds()
       };
-      /(y+)/.test(_0x4831bc) && (_0x4831bc = _0x4831bc.replace(RegExp.$1, (_0x5d1bc8.getFullYear() + "").substr(4 - RegExp.$1.length)));
-      for (let _0xc8b309 in _0x48ec92) new RegExp("(" + _0xc8b309 + ")").test(_0x4831bc) && (_0x4831bc = _0x4831bc.replace(RegExp.$1, 1 == RegExp.$1.length ? _0x48ec92[_0xc8b309] : ("00" + _0x48ec92[_0xc8b309]).substr(("" + _0x48ec92[_0xc8b309]).length)));
-      return _0x4831bc;
+      /(y+)/.test(t) && (t = t.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length)));
+      for (let e in i) new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length)));
+      return t;
     }
-    ["msg"](_0x28c9bd = _0x4e7acc, _0x2b6479 = "", _0x5ed616 = "", _0x1a4f3e) {
-      const _0xf81196 = _0x1f4a44 => {
-        if (!_0x1f4a44) {
-          return _0x1f4a44;
-        }
-        if ("string" == typeof _0x1f4a44) return this.isLoon() ? _0x1f4a44 : this.isQuanX() ? {
-          "open-url": _0x1f4a44
+    msg(e = t, s = "", i = "", r) {
+      const o = t => {
+        if (!t) return t;
+        if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? {
+          "open-url": t
         } : this.isSurge() ? {
-          "url": _0x1f4a44
+          url: t
         } : void 0;
-        if ("object" == typeof _0x1f4a44) {
+        if ("object" == typeof t) {
           if (this.isLoon()) {
-            let _0x337882 = _0x1f4a44.openUrl || _0x1f4a44.url || _0x1f4a44["open-url"],
-              _0x34a658 = _0x1f4a44.mediaUrl || _0x1f4a44["media-url"];
+            let e = t.openUrl || t.url || t["open-url"],
+              s = t.mediaUrl || t["media-url"];
             return {
-              "openUrl": _0x337882,
-              "mediaUrl": _0x34a658
+              openUrl: e,
+              mediaUrl: s
             };
           }
           if (this.isQuanX()) {
-            let _0x8acda0 = _0x1f4a44["open-url"] || _0x1f4a44.url || _0x1f4a44.openUrl,
-              _0x4543cd = _0x1f4a44["media-url"] || _0x1f4a44.mediaUrl;
+            let e = t["open-url"] || t.url || t.openUrl,
+              s = t["media-url"] || t.mediaUrl;
             return {
-              "open-url": _0x8acda0,
-              "media-url": _0x4543cd
+              "open-url": e,
+              "media-url": s
             };
           }
           if (this.isSurge()) {
-            let _0x556691 = _0x1f4a44.url || _0x1f4a44.openUrl || _0x1f4a44["open-url"];
+            let e = t.url || t.openUrl || t["open-url"];
             return {
-              "url": _0x556691
+              url: e
             };
           }
         }
       };
-      if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(_0x28c9bd, _0x2b6479, _0x5ed616, _0xf81196(_0x1a4f3e)) : this.isQuanX() && $notify(_0x28c9bd, _0x2b6479, _0x5ed616, _0xf81196(_0x1a4f3e))), !this.isMuteLog) {
-        let _0xd44020 = ["", "==============\uD83D\uDCE3\u7CFB\u7EDF\u901A\u77E5\uD83D\uDCE3=============="];
-        _0xd44020.push(_0x28c9bd);
-        _0x2b6479 && _0xd44020.push(_0x2b6479);
-        _0x5ed616 && _0xd44020.push(_0x5ed616);
-        console.log(_0xd44020.join("\n"));
-        this.logs = this.logs.concat(_0xd44020);
+      if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) {
+        let t = ["", "==============\uD83D\uDCE3\u7CFB\u7EDF\u901A\u77E5\uD83D\uDCE3=============="];
+        t.push(e), s && t.push(s), i && t.push(i), console.log(t.join("\n")), this.logs = this.logs.concat(t);
       }
     }
-    ["log"](..._0x358b6d) {
-      _0x358b6d.length > 0 && (this.logs = [...this.logs, ..._0x358b6d]);
-      console.log(_0x358b6d.join(this.logSeparator));
+    log(...t) {
+      t.length > 0 && (this.logs = [...this.logs, ...t]), console.log(t.join(this.logSeparator));
     }
-    ["logErr"](_0x16f1d2, _0xabf972) {
-      const _0x51a71c = !this.isSurge() && !this.isQuanX() && !this.isLoon();
-      _0x51a71c ? this.log("", "\u2757\uFE0F" + this.name + ", \u9519\u8BEF!", _0x16f1d2.stack) : this.log("", "\u2757\uFE0F" + this.name + ", \u9519\u8BEF!", _0x16f1d2);
+    logErr(t, e) {
+      const s = !this.isSurge() && !this.isQuanX() && !this.isLoon();
+      s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t);
     }
-    ["wait"](_0x39f9b7) {
-      return new Promise(_0x57a319 => setTimeout(_0x57a319, _0x39f9b7));
+    wait(t) {
+      return new Promise(e => setTimeout(e, t));
     }
-    ["done"](_0x3942bc = {}) {
-      const _0x36cb4f = new Date().getTime(),
-        _0x48cfca = (_0x36cb4f - this.startTime) / 1000;
-      this.log("", "\uD83D\uDD14" + this.name + ", \u7ED3\u675F! \uD83D\uDD5B " + _0x48cfca + " \u79D2");
-      this.log();
-      (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(_0x3942bc);
+    done(t = {}) {
+      const e = new Date().getTime(),
+        s = (e - this.startTime) / 1000;
+      this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t);
     }
-  }(_0x4e7acc, _0x4ece95);
+  }(t, e);
 }
